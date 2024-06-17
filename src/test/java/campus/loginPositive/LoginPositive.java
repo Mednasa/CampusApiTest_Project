@@ -14,7 +14,7 @@ import static io.restassured.RestAssured.given;
 
 public class LoginPositive {
 
-    public static RequestSpecification reqSpec; // her yerden ulasabilmen icin public yap. default ayarı protect
+    public static RequestSpecification reqSpec;
 
 
     @BeforeClass
