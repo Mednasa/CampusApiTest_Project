@@ -1,7 +1,7 @@
-package onur.educationStandart;
+package campus.educationStandart;
 
-import loginPositive.LoginPositive;
-import onur.entranceExam.model.Exam;
+import campus.entranceExam.model.Exam;
+import campus.loginPositive.LoginPositive;
 import com.github.javafaker.Faker;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -22,7 +22,6 @@ public class CampusEducationTests extends LoginPositive {
 
     @Test
     public void getList(){
-
         Exam e = new Exam();
 
         given()
@@ -36,7 +35,6 @@ public class CampusEducationTests extends LoginPositive {
 
     @Test
     public void addEducation(){
-
         Exam e =new Exam();
         educationName =createFaker.animal().name()+createFaker.gameOfThrones().dragon();
 
@@ -71,7 +69,6 @@ public class CampusEducationTests extends LoginPositive {
 
     @Test(dependsOnMethods = "addEducation")
     public void editEducation(){
-
         Exam e =new Exam();
         String editEducationName= createFaker.pokemon().name()+createFaker.number().randomNumber();
 
@@ -96,7 +93,6 @@ public class CampusEducationTests extends LoginPositive {
 
     @Test(dependsOnMethods = "editEducation")
     public void deleteEducationPositive(){
-
         given()
                 .spec(reqSpec)
                 .when()
@@ -109,7 +105,6 @@ public class CampusEducationTests extends LoginPositive {
 
     @Test(dependsOnMethods = "deleteEducationPositive")
     public void deleteEducationNegative(){
-
         given()
                 .spec(reqSpec)
                 .when()

@@ -1,4 +1,4 @@
-package onur.entranceExam.model;
+package campus.entranceExam.model;
 
 import java.util.ArrayList;
 

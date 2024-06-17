@@ -1,9 +1,12 @@
-package onur.entranceExam;
+package campus.entranceExam;
 
-import loginPositive.LoginPositive;
-import onur.entranceExam.model.*;
+import campus.entranceExam.model.EmailMessage;
+import campus.entranceExam.model.Exam;
+import campus.entranceExam.model.GradeLevel;
+import campus.loginPositive.LoginPositive;
 import com.github.javafaker.Faker;
 import org.testng.annotations.Test;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,9 +58,6 @@ public class CampusEntranceExamTests extends LoginPositive {
         e.setAgreementEnabled(false);
         e.setDocuments(new ArrayList<>());
 
-
-
-
         given()
                 .spec(reqSpec)
                 .body(e)
@@ -72,7 +72,6 @@ public class CampusEntranceExamTests extends LoginPositive {
 
     @Test
     public void addExamPositive(){
-
         examName = "Math"+fakerCreate.address().buildingNumber();
 
         EmailMessage emailMessage = new EmailMessage();
@@ -122,23 +121,17 @@ public class CampusEntranceExamTests extends LoginPositive {
                 .statusCode(201)
                 .extract().path("id");
 
-//        System.out.println(examId);
-//        System.out.println(examName);
-
     }
 
 
     @Test(dependsOnMethods = "addExamPositive")
     public void getExam(){
-
         Exam e = new Exam();
 
         Map<String,String> examCredentials = new HashMap<>();
         examCredentials.put("name",examName);
         examCredentials.put("academicPeriodId","6577022e8af7ce488ac69b96");
         examCredentials.put("schoolId",e.getSchoolId());
-
-
 
         given()
                 .spec(reqSpec)
@@ -152,7 +145,6 @@ public class CampusEntranceExamTests extends LoginPositive {
 
     @Test(dependsOnMethods = "getExam")
     public void editExamNegative(){
-
         examName = "Morphing Spell "+fakerCreate.address().buildingNumber();
 
         EmailMessage emailMessage = new EmailMessage();
@@ -192,8 +184,6 @@ public class CampusEntranceExamTests extends LoginPositive {
         e.setDocuments(new ArrayList<>());
         e.getSchoolId();
 
-
-
         given()
                 .spec(reqSpec)
                 .body(e)
@@ -207,7 +197,6 @@ public class CampusEntranceExamTests extends LoginPositive {
 
     @Test(dependsOnMethods = "editExamNegative")
     public void editExamPositive(){
-
         examName = "Morphing Spell "+fakerCreate.address().buildingNumber();
 
         EmailMessage emailMessage = new EmailMessage();
@@ -260,9 +249,7 @@ public class CampusEntranceExamTests extends LoginPositive {
 
     @Test
     public void deleteExamNegative(){
-
         String invalidId="11515615";
-
 
         given()
                 .spec(reqSpec)
@@ -276,7 +263,6 @@ public class CampusEntranceExamTests extends LoginPositive {
 
     @Test(dependsOnMethods = "editExamPositive")
     public void deleteExamPositive(){
-
         given()
                 .spec(reqSpec)
                 .when()
@@ -285,7 +271,5 @@ public class CampusEntranceExamTests extends LoginPositive {
                 .log().body()
                 .statusCode(204);
     }
-
-
 
 }

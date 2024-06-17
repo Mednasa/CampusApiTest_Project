@@ -1,4 +1,4 @@
-package onur.entranceExam.model;
+package campus.entranceExam.model;
 
 public class EmailMessage {
 
