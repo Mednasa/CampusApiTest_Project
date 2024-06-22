@@ -87,7 +87,6 @@ public class GradingScheme {
         gradingID = response.path("id");
         gradingName = response.path("name");
         schoolID = response.path("schoolId");
-
     }
 
     @Test(dependsOnMethods = "createGradingScheme")
@@ -110,19 +109,19 @@ public class GradingScheme {
     @Test(dependsOnMethods = "updateGradingScheme")
     public void deleteGradingScheme() {
         given().spec(resquestSpecification)
-               .when()
-               .delete("/school-service/api/grading-schemes/" + gradingID)
-               .then()
-               .statusCode(200);
+                .when()
+                .delete("/school-service/api/grading-schemes/" + gradingID)
+                .then()
+                .statusCode(200);
     }
 
     @Test(dependsOnMethods = "deleteGradingScheme")
     public void deleteGradingSchemeNegative() {
         given().spec(resquestSpecification)
-               .when()
-               .delete("/school-service/api/grading-schemes/" + gradingID)
-               .then()
-               .statusCode(400);
+                .when()
+                .delete("/school-service/api/grading-schemes/" + gradingID)
+                .then()
+                .statusCode(400);
     }
 
 }
